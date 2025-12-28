@@ -1,4 +1,4 @@
-@theme "/home/cxredix/.local/share/rofi/themes/squared-material-red.rasi"
+@theme "./squared-material-red.rasi"
 
 configuration {
 	modes: "window,drun,run,filebrowser";
