@@ -2,3 +2,5 @@
 .config/aseprite/sessions
 .config/aseprite/Aseprite.log
 .config/aseprite/aseprite.ini
+
+.config/fish/fish_variables
