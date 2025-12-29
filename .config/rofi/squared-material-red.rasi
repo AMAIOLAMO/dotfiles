@@ -28,8 +28,9 @@ window {
 
     background-color:   @bg0;
 
+    // makes the shadow more obvious in conjunction with picom's window shadows
     border: 2px solid;
-    border-color: @accent-color;
+    border-color: black;
 
     padding: 20px;
     border-radius: 10px;
