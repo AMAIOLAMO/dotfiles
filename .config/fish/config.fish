@@ -18,8 +18,6 @@ alias ipy "ipython"
 
 alias py "python"
 
-alias restart-nm "sudo systemctl restart NetworkManager"
-
 alias gitfp "git fetch && git pull"
 
 alias fetch "fastfetch"
@@ -34,10 +32,10 @@ alias trsh "trash"
 
 alias trshe "trash-empty"
 
-alias dc "doublecmd"
-
-alias pc "pacman"
-
 alias x "exit"
 
 export EDITOR="nvim"
+
+export GEM_HOME="$(gem env user_gemhome)"
+export GEM_PATH="$(gem env user_gemhome)/bin"
+export PATH="$PATH:$GEM_PATH"
