@@ -1,3 +1,9 @@
+" TODO:
+" 1. Allow toggle for netrw <leader>e
+" 2. Add optional fzf file search support
+" 3. Add buffer management, something that is simplistic to work with
+
+
 "line numbers and relative line numbers
 set number
 set relativenumber
@@ -93,12 +99,10 @@ let g:mapleader = " "
 
 " ===== netrw setup =====
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_liststyle = 4
 
 " easier access
 nnoremap <leader>e :Ex<CR>
-
-colorscheme alduin
 
 " merge next line
 nnoremap J mzJ`z
@@ -115,10 +119,10 @@ vnoremap J :m '>+1<CR>gv
 " moving up requires 2 for 1 line
 vnoremap K :m '<-2<CR>gv
 
-" -- preserved paste
+" preserved paste
 xnoremap <leader>pp "_dP
 
-" -- yank to system clipboard (only for vim that is compiled with +clipboard support)
+" yank to system clipboard (only for vim that is compiled with +clipboard support)
 " nnoremap <leader>y \"+y
 " vnoremap <leader>y \"+y
 
@@ -184,3 +188,22 @@ nnoremap <M-h> :call ToggleTerm()<CR>
 
 autocmd TerminalOpen * :call s:setup_term()
 autocmd QuitPre * :call TryCloseTerm()
+
+
+" ===== plugin settings ===== "
+let g:sneak#label = 1
+
+" fallback
+" colorscheme alduin
+
+let g:sonokai_style = "shusia"
+colorscheme sonokai
+
+" FZF
+let g:fzf_layout = { 'down': '45%' }
+nnoremap <leader><leader> :FZF<CR>
+
+nnoremap <leader>cs :call fzf#run(fzf#wrap({
+            \'source': map(split(globpath(&rtp, 'colors/*.vim')), 'fnamemodify(v:val, ":t:r")'),
+            \'sink': 'colo'
+        \}))<CR>
