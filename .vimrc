@@ -1,7 +1,5 @@
 " TODO:
 " 1. Allow toggle for netrw <leader>e
-" 2. Add optional fzf file search support
-" 3. Add buffer management, something that is simplistic to work with
 
 
 "line numbers and relative line numbers
@@ -191,14 +189,28 @@ autocmd QuitPre * :call TryCloseTerm()
 
 
 " ===== plugin settings ===== "
+filetype plugin on
+
+" sneak
 let g:sneak#label = 1
 
 " fallback
 " colorscheme alduin
 
+packadd! sonokai
 let g:sonokai_style = "shusia"
+let g:sonokai_better_performance = 1
 colorscheme sonokai
 
-" FZF
-let g:fzf_layout = { 'down': '45%' }
-nnoremap <leader><leader> :FZF<CR>
+" CtrlP
+let g:ctrlp_show_hidden = 1 " show hidden files
+nnoremap <leader><leader> :CtrlP<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+
+" undotree
+nnoremap <leader>u :UndotreeToggle<CR>
+
+packloadall
+
+silent! helptags ALL
+
