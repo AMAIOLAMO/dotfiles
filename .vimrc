@@ -202,8 +202,3 @@ colorscheme sonokai
 " FZF
 let g:fzf_layout = { 'down': '45%' }
 nnoremap <leader><leader> :FZF<CR>
-
-nnoremap <leader>cs :call fzf#run(fzf#wrap({
-            \'source': map(split(globpath(&rtp, 'colors/*.vim')), 'fnamemodify(v:val, ":t:r")'),
-            \'sink': 'colo'
-        \}))<CR>

@@ -21,6 +21,7 @@ alias py "python"
 # Git
 alias g "git"
 alias gstat "git status"
+alias gdiff "git diff"
 
 alias gfetch "git fetch"
 alias gpull "git pull"
@@ -30,7 +31,6 @@ alias gcommit "git commit"
 alias ggraph "git log --graph"
 
 alias gaa "git add ."
-
 
 alias ff "fastfetch"
 
