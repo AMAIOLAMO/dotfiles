@@ -42,6 +42,9 @@ set statusline+=%#CursorColumn#
 
 set statusline+=\ " space
 
+set statusline+=<%{bufnr()}>
+
+set statusline+=\ " space
 set statusline+=%f
 set statusline+=%h%w%m%r
 
@@ -118,9 +121,13 @@ vnoremap <M-E> oEo
 " ====== terminal ======
 let g:term_buf = -1
 
-function! s:toggle_term()
+function! ToggleTerm()
     if bufexists(g:term_buf)
-        execute 'sbuffer ' . g:term_buf
+        if bufwinnr(g:term_buf) != -1
+            execute bufwinnr(g:term_buf) . 'hide'
+        else
+            execute 'sbuffer ' . g:term_buf
+        endif
     else
         terminal
         let g:term_buf = bufnr('%')
@@ -130,13 +137,13 @@ endfunction
 function! s:setup_term()
     setlocal nonumber norelativenumber
 
-    tnoremap <M-h> <C-\><C-n>:call s:toggle_term()<CR>
+    tnoremap <C-t> <C-\><C-n>:call ToggleTerm()<CR>
 
     " allows Esc to escape terminal
     tnoremap <Esc> <C-\><C-n>
 endfunction
 
-nnoremap <M-h> :call s:toggle_term()<CR>
+nnoremap <C-t> :call ToggleTerm()<CR>
 
 autocmd TerminalOpen * :call s:setup_term()
 
