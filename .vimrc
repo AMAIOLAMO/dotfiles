@@ -19,13 +19,19 @@ set noswapfile
 set nohlsearch
 set incsearch
 
+set ignorecase 
+set smartcase
+
 set termguicolors
+
+set showmatch
 
 set scrolloff=8
 
 set updatetime=50
 
 
+" enable mouse features for normal and visual mode only
 set mouse=nv
 
 " new opened files override unsave changes
@@ -34,35 +40,45 @@ set hidden
 " statusline setup
 set laststatus=2
 
-set statusline=
-set statusline+=%#PmenuSel# " color 2
-set statusline+=%#CursorColumn#
-set statusline+=█
+function! MainStatusLine() abort
+    let l:segments = []
 
-set statusline+=%#CursorColumn#
+    call add(l:segments, "%#CursorColumn#")
+    call add(l:segments, "█")
 
-set statusline+=\ " space
+    call add(l:segments, " ")
 
-set statusline+=<%{bufnr()}>
+    if &buftype ==# 'terminal'
+        call add(l:segments, "Terminal")
+        call add(l:segments, "%=")
 
-set statusline+=\ " space
-set statusline+=%f
-set statusline+=%h%w%m%r
+    else
+        call add(l:segments, "%#CursorColumn#")
 
-set statusline+=%#LineNr# " color 1
-set statusline+=%=
+        call add(l:segments, "<%{bufnr()}>")
 
-set statusline+=%#CursorColumn#
-set statusline+=\ %y " filetype
-" set statusline+=\ %{&fileencoding?&fileencoding:&encoding} 
-" set statusline+=\[%{&fileformat}\]
-set statusline+=\ (%l:%c)
+        call add(l:segments, " ")
+        call add(l:segments, "%f")
+        call add(l:segments, "%h%w%m%r")
 
-set statusline+=\ " space
+        call add(l:segments, "%#LineNr# ")
+        call add(l:segments, "%=")
 
-set statusline+=%#PmenuSel# " color 2
-set statusline+=%#CursorColumn#
-set statusline+=█
+        call add(l:segments, "%#CursorColumn#")
+        call add(l:segments, " %y")
+        call add(l:segments, " %LL")
+
+        call add(l:segments, " (%l:%c)")
+    endif
+
+    call add(l:segments, " ")
+    call add(l:segments, "%#CursorColumn#")
+    call add(l:segments, "█")
+
+    return join(l:segments, "")
+endfunction
+
+set statusline=%!MainStatusLine()
 
 syntax on
 
@@ -89,7 +105,6 @@ vnoremap H <gv
 vnoremap L >gv
 
 " fast linemove
-
 vnoremap J :m '>+1<CR>gv
 " moving up requires 2 for 1 line
 vnoremap K :m '<-2<CR>gv
@@ -125,7 +140,6 @@ nnoremap <C-=> <C-w>>
 " shrink window
 nnoremap <C--> <C-w><
 
-" extension select, owo is kinda cute lol
 vnoremap <M-w> owo
 vnoremap <M-e> oeo
 vnoremap <M-W> oWo

@@ -6,7 +6,7 @@ starship init fish | source
 
 zoxide init fish | source
 
-alias fzfbat "fzf --preview 'batcat --style=numbers --color=always {}'"
+alias fzf "fzf --preview 'bat --style=numbers --color=always {}'"
 
 alias fzfhistory "history | fzf"
 
@@ -18,9 +18,16 @@ alias ipy "ipython"
 
 alias py "python"
 
-alias gitfp "git fetch && git pull"
+# Git
+alias g "git"
+alias gstat "git status"
+alias gpull "git pull"
+alias gfetch "git fetch"
+alias gcommit "git commit"
+alias ggraph "git log --graph"
 
-alias fetch "fastfetch"
+alias gaa "git add ."
+
 
 alias ff "fastfetch"
 
