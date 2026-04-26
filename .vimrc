@@ -121,6 +121,12 @@ vnoremap <M-E> oEo
 " ====== terminal ======
 let g:term_buf = -1
 
+function! TryCloseTerm()
+    if bufexists(g:term_buf)
+        execute 'bwipeout! ' . g:term_buf
+    endif
+endfunction
+
 function! ToggleTerm()
     if bufexists(g:term_buf)
         if bufwinnr(g:term_buf) != -1
@@ -146,4 +152,4 @@ endfunction
 nnoremap <C-t> :call ToggleTerm()<CR>
 
 autocmd TerminalOpen * :call s:setup_term()
-
+autocmd QuitPre * :call TryCloseTerm()
