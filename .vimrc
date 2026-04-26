@@ -25,9 +25,9 @@ set scrolloff=8
 
 set updatetime=50
 
+" new opened files override unsave changes
 set mouse=nv
 
-" new opened files override unsave changes
 set hidden
 
 " statusline setup
@@ -87,6 +87,15 @@ nnoremap L mzV>`z
 vnoremap H <gv
 vnoremap L >gv
 
+" fast linemove
+nnoremap <M-j> :m +1<CR>
+
+" moving up requires 2 for 1 line
+nnoremap <M-k> :m -2<CR>
+
+vnoremap <M-j> :m '>+1<CR>gv
+vnoremap <M-k> :m '<-2<CR>gv
+
 " -- preserved paste
 xnoremap <leader>pp' \"_dP
 
@@ -143,13 +152,17 @@ endfunction
 function! s:setup_term()
     setlocal nonumber norelativenumber
 
+    " for terminals which cannot reliably send the meta key
     tnoremap <C-t> <C-\><C-n>:call ToggleTerm()<CR>
+    tnoremap <M-h> <C-\><C-n>:call ToggleTerm()<CR>
 
     " allows Esc to escape terminal
     tnoremap <Esc> <C-\><C-n>
 endfunction
 
+" for terminals which cannot reliably send the meta key
 nnoremap <C-t> :call ToggleTerm()<CR>
+nnoremap <M-h> :call ToggleTerm()<CR>
 
 autocmd TerminalOpen * :call s:setup_term()
 autocmd QuitPre * :call TryCloseTerm()
