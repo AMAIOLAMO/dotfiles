@@ -25,9 +25,10 @@ set scrolloff=8
 
 set updatetime=50
 
-" new opened files override unsave changes
+
 set mouse=nv
 
+" new opened files override unsave changes
 set hidden
 
 " statusline setup
@@ -88,16 +89,13 @@ vnoremap H <gv
 vnoremap L >gv
 
 " fast linemove
-nnoremap <M-j> :m +1<CR>
 
+vnoremap J :m '>+1<CR>gv
 " moving up requires 2 for 1 line
-nnoremap <M-k> :m -2<CR>
-
-vnoremap <M-j> :m '>+1<CR>gv
-vnoremap <M-k> :m '<-2<CR>gv
+vnoremap K :m '<-2<CR>gv
 
 " -- preserved paste
-xnoremap <leader>pp' \"_dP
+xnoremap <leader>pp "_dP
 
 " -- yank to system clipboard (only for vim that is compiled with +clipboard support)
 " nnoremap <leader>y \"+y
@@ -112,6 +110,14 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <M-j> :m +1<CR>
+nnoremap <M-j> :m +1<CR>
+
+nnoremap <M-k> :m -2<CR>
+
+
+nnoremap <M-k> :m -2<CR>
+
 
 " expand window
 nnoremap <C-=> <C-w>>
