@@ -34,18 +34,31 @@ set hidden
 set laststatus=2
 
 set statusline=
-set statusline+=%#LineNr# " color 1
 set statusline+=%#PmenuSel# " color 2
-set statusline+=\ %f
-set statusline+=%m
+set statusline+=%#CursorColumn#
+set statusline+=█
 
+set statusline+=%#CursorColumn#
+
+set statusline+=\ " space
+
+set statusline+=%f
+set statusline+=%h%w%m%r
+
+set statusline+=%#LineNr# " color 1
 set statusline+=%=
 
-set statusline+=%#CursorColumn# " color 3
+set statusline+=%#CursorColumn#
 set statusline+=\ %y " filetype
 " set statusline+=\ %{&fileencoding?&fileencoding:&encoding} 
 " set statusline+=\[%{&fileformat}\]
 set statusline+=\ (%l:%c)
+
+set statusline+=\ " space
+
+set statusline+=%#PmenuSel# " color 2
+set statusline+=%#CursorColumn#
+set statusline+=█
 
 syntax on
 
@@ -104,29 +117,26 @@ vnoremap <M-E> oEo
 
 " ====== terminal ======
 let g:term_buf = -1
-nnoremap <M-h> :call ToggleTerm()<CR>
 
-function! ToggleTerm()
+function! s:toggle_term()
     if bufexists(g:term_buf)
-        if bufwinnr(g:term_buf) != -1
-            execute bufwinnr(g:term_buf) . 'hide'
-        else
-            execute 'sbuffer ' . g:term_buf
-        endif
+        execute 'sbuffer ' . g:term_buf
     else
         terminal
         let g:term_buf = bufnr('%')
     endif
 endfunction
 
-autocmd TerminalOpen * tnoremap <M-h> <C-\><C-n>:call ToggleTerm()<CR>
+function! s:setup_term()
+    setlocal nonumber norelativenumber
 
-" nnoremap <M-h> :term<CR>
+    tnoremap <M-h> <C-\><C-n>:call s:toggle_term()<CR>
 
-" allows Esc to escape terminal
+    " allows Esc to escape terminal
+    tnoremap <Esc> <C-\><C-n>
+endfunction
 
-autocmd TerminalOpen * setlocal nonumber norelativenumber
-autocmd TerminalOpen * tnoremap <Esc> <C-\><C-n>
-" autocmd TerminalOpen * tnoremap <M-h> <C-\><C-n>:hide<CR>
+nnoremap <M-h> :call s:toggle_term()<CR>
 
+autocmd TerminalOpen * :call s:setup_term()
 
