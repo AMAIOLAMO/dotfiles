@@ -30,6 +30,12 @@ set scrolloff=8
 
 set updatetime=50
 
+set colorcolumn=90
+
+hi ColorColumn guifg=#202020 guibg=#191919
+hi ColorColumn ctermfg=lightgray ctermbg=lightgray
+hi TooLongMarker ctermbg=magenta guibg=#5f7a41 gui=underline
+call matchadd('TooLongMarker', '\%90v', 100)
 
 " enable mouse features for normal and visual mode only
 set mouse=nv
