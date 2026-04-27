@@ -90,7 +90,7 @@ endfunction
 
 set statusline=%!MainStatusLine()
 
-syntax on
+" syntax on
 
 " Map leader
 let g:mapleader = " "
@@ -121,8 +121,8 @@ vnoremap K :m '<-2<CR>gv
 xnoremap <leader>pp "_dP
 
 " yank to system clipboard (only for vim that is compiled with +clipboard support)
-" nnoremap <leader>y \"+y
-" vnoremap <leader>y \"+y
+nnoremap <leader>y \"+y
+vnoremap <leader>y \"+y
 
 " file management
 nnoremap <leader>q :q<CR>
@@ -173,19 +173,19 @@ function! s:setup_term()
     setlocal nonumber norelativenumber
 
     " for terminals which cannot reliably send the meta key
-    tnoremap <C-t> <C-\><C-n>:call ToggleTerm()<CR>
-    tnoremap <M-h> <C-\><C-n>:call ToggleTerm()<CR>
+    tnoremap <C-t> <C-\><C-n>:silent call ToggleTerm()<CR>
+    tnoremap <M-h> <C-\><C-n>:silent call ToggleTerm()<CR>
 
     " allows Esc to escape terminal
     tnoremap <Esc> <C-\><C-n>
 endfunction
 
 " for terminals which cannot reliably send the meta key
-nnoremap <C-t> :call ToggleTerm()<CR>
-nnoremap <M-h> :call ToggleTerm()<CR>
+nnoremap <C-t> :silent call ToggleTerm()<CR>
+nnoremap <M-h> :silent call ToggleTerm()<CR>
 
-autocmd TerminalOpen * :call s:setup_term()
-autocmd QuitPre * :call TryCloseTerm()
+autocmd TerminalOpen * :silent call s:setup_term()
+autocmd QuitPre * :silent call TryCloseTerm()
 
 
 " ===== plugin settings ===== "
