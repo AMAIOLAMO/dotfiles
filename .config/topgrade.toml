@@ -28,7 +28,7 @@
 # sudo_command = "sudo"
 
 # Disable specific steps - same options as the command line flag
-disable = ["firmware", "containers", "composer"]
+# disable = ["firmware", "containers", "composer"]
 
 # Run these steps before all others
 # first = ["chezmoi"]
@@ -99,7 +99,7 @@ disable = ["firmware", "containers", "composer"]
 # bashit_branch = "stable"
 
 # Run specific steps - same options as the command line flag
-# only = ["system", "emacs"]
+only = ["system", "flatpak", "tldr", "vim"]
 
 # Whether to self update
 #
