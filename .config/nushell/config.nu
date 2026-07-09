@@ -17,6 +17,18 @@
 # options using:
 #     config nu --doc | nu-highlight | less -R
 
+$env.config.show_banner = false
+# custom banner
+def show_banner [] {
+  printf $"WELCOME BACK "
+  printf $"(ansi red)C(ansi magenta)x"
+  printf $"(ansi yellow)R(ansi green)e(ansi aqua)d(ansi blue)i(ansi purple)x!"
+  printf "\n"
+
+  cal
+}
+
+
 alias fzf = fzf --preview 'bat --style=numbers --color=always {}'
 
 alias cl = clear
@@ -54,3 +66,6 @@ alias trshe = trash-empty
 alias x = exit
 
 source ~/.config/nushell/zoxide.nu
+
+
+show_banner
