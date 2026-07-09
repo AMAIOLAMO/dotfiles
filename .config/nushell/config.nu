@@ -24,6 +24,10 @@
 $env.config.show_banner = false
 
 def show_banner [] {
+  use kawaiiface
+
+  printf $"(kawaiiface pick_random) "
+
   printf $"WELCOME BACK "
   printf $"(ansi red)C(ansi magenta)x"
   printf $"(ansi yellow)R(ansi green)e(ansi aqua)d(ansi blue)i(ansi purple)x"
