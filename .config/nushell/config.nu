@@ -52,3 +52,5 @@ alias trsh = trash
 alias trshe = trash-empty
 
 alias x = exit
+
+source ~/.config/nushell/zoxide.nu
