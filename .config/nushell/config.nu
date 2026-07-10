@@ -11,6 +11,10 @@
 # config settings #
 ###################
 
+$env.path ++= [
+  "~/bin"
+]
+
 $env.config.show_banner = false
 
 def show_banner [] {
@@ -18,7 +22,6 @@ def show_banner [] {
 
   def align_term_center []: string -> string {
     $in | fill --alignment center --character ' ' --width (term size).columns
-
   }
 
   mut result_heading = ""
@@ -32,7 +35,11 @@ def show_banner [] {
 
   printf $"(kawaiiface pick_random | align_term_center)\n"
 
-  cal | lines | each {|line| $line | align_term_center} | str join "\n"
+  cal
+  | lines
+  | reduce --fold "" {|elt, acc|
+    $acc + ($elt | align_term_center) + "\n"
+  }
 }
 
 $env.config.edit_mode = 'vi'
@@ -76,9 +83,9 @@ alias g = git
 alias gstat = git status
 alias gdiff = git diff
 
-alias gfetch = git fetch
-alias gpull = git pull
-alias gpush = git push
+alias gfetch  = git fetch
+alias gpull   = git pull
+alias gpush   = git push
 alias gcommit = git commit
 
 alias ggraph = git log --graph
@@ -89,16 +96,17 @@ alias ff = fastfetch
 
 alias drop = blobdrop
 
-alias rm = echo use trash / trsh instead!
+alias raw_rm = rm -v
 
-alias trsh = trash
+alias rm = echo "use trash / trsh instead! If you really want to delete, use raw_rm instead"
 
-alias trshe = trash-empty
+alias t = trash
+
+alias te = trash-empty
 
 alias x = exit
 
 source zoxide.nu
-
 source theme.nu
 
 
