@@ -22,17 +22,17 @@ def show_banner [] {
   }
 
   mut result_heading = ""
-  $result_heading = $result_heading + $"(kawaiiface pick_random) "
 
-  $result_heading = $result_heading + $"WELCOME BACK "
+  $result_heading = $result_heading + $"[WELCOME BACK "
   $result_heading = $result_heading + $"(ansi red)C(ansi magenta)x"
   $result_heading = $result_heading + $"(ansi yellow)R(ansi green)e(ansi aqua)d(ansi blue)i(ansi purple)x"
-  $result_heading = $result_heading + $"(ansi reset)"
+  $result_heading = $result_heading + $"(ansi reset)]"
 
-  printf $"($result_heading | align_term_center)"
-  printf "\n"
+  printf $"($result_heading | align_term_center)\n"
 
-  cal
+  printf $"(kawaiiface pick_random | align_term_center)\n"
+
+  cal | lines | each {|line| $line | align_term_center} | str join
 }
 
 $env.config.edit_mode = 'vi'
