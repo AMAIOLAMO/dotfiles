@@ -3,17 +3,7 @@
 # Installed by:
 # version = "0.114.0"
 #
-# This file is used to override default Nushell settings, define
-# (or import) custom commands, or run any other startup tasks.
-# See https://www.nushell.sh/book/configuration.html
-#
-# Nushell sets "sensible defaults" for most configuration settings, 
-# so your `config.nu` only needs to override these defaults if desired.
-#
-# You can open this file in your default editor using:
-#     config nu
-#
-# You can also pretty-print and page through the documentation for configuration
+# You can also page through the documentation for configuration
 # options using:
 #     config nu --doc | nu-highlight | less -R
 
@@ -26,12 +16,20 @@ $env.config.show_banner = false
 def show_banner [] {
   use kawaiiface
 
-  printf $"(kawaiiface pick_random) "
+  def align_term_center []: string -> string {
+    $in | fill --alignment center --character ' ' --width (term size).columns
 
-  printf $"WELCOME BACK "
-  printf $"(ansi red)C(ansi magenta)x"
-  printf $"(ansi yellow)R(ansi green)e(ansi aqua)d(ansi blue)i(ansi purple)x"
-  printf $"(ansi reset)"
+  }
+
+  mut result_heading = ""
+  $result_heading = $result_heading + $"(kawaiiface pick_random) "
+
+  $result_heading = $result_heading + $"WELCOME BACK "
+  $result_heading = $result_heading + $"(ansi red)C(ansi magenta)x"
+  $result_heading = $result_heading + $"(ansi yellow)R(ansi green)e(ansi aqua)d(ansi blue)i(ansi purple)x"
+  $result_heading = $result_heading + $"(ansi reset)"
+
+  printf $"($result_heading | align_term_center)"
   printf "\n"
 
   cal
