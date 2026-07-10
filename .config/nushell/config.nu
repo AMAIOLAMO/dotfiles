@@ -32,7 +32,7 @@ def show_banner [] {
 
   printf $"(kawaiiface pick_random | align_term_center)\n"
 
-  cal | lines | each {|line| $line | align_term_center} | str join
+  cal | lines | each {|line| $line | align_term_center} | str join "\n"
 }
 
 $env.config.edit_mode = 'vi'
