@@ -10,18 +10,12 @@ function kawaiiface
       echo "★~(◡△◕✿)"
 
     case 4
-      echo "(｡♥‿♥｡)"
-
-    case 5
-      echo "v(=∩_∩=)ﾌ"
-
-    case 6
       echo "(⋈◍＞◡＜◍)。✧♡"
 
-    case 7
+    case 5
       echo "(づ￣ ³￣)づ"
 
-    case 8
+    case 6
       echo "\(-ㅂ-)/ ♥ ♥ ♥"
   end
 end
