@@ -2,8 +2,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-starship init fish | source
-
 zoxide init fish | source
 
 alias fzf "fzf --preview 'bat --style=numbers --color=always {}'"
@@ -46,6 +44,8 @@ alias x "exit"
 
 export EDITOR="nvim"
 
-export GEM_HOME="$(gem env user_gemhome)"
-export GEM_PATH="$(gem env user_gemhome)/bin"
-export PATH="$PATH:$GEM_PATH"
+fish_config theme choose catppuccin-macchiato
+
+# export GEM_HOME="$(gem env user_gemhome)"
+# export GEM_PATH="$(gem env user_gemhome)/bin"
+# export PATH="$PATH:$GEM_PATH"
